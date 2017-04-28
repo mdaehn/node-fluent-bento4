@@ -1,0 +1,24 @@
+{
+  "name": "fluent-bento4",
+  "version": "1.0.0",
+  "description": "A fluent API for bento4",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/markusdaehn/node-fluent-bento4.git"
+  },
+  "keywords": [
+    "Bento4",
+    "hls",
+    "dash"
+  ],
+  "author": "Markus Daehn <markus.daehn@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/markusdaehn/node-fluent-bento4/issues"
+  },
+  "homepage": "https://github.com/markusdaehn/node-fluent-bento4#readme"
+}
