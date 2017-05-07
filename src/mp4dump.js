@@ -20,7 +20,7 @@ function Mp4Dump() {
 /**
  * path to the mp4dump executable
  **/
-Mp4Dump.command = 'mp4dump'
+Mp4Dump.path = 'mp4dump'
 
 /**
  * @param {string} input - path to input video
@@ -30,7 +30,7 @@ Mp4Dump.command = 'mp4dump'
  **/
 Mp4Dump.exec = function (input, args = []) {
   args.push(input)
-  return exec(Mp4Dump.command, args).then((data) => {
+  return exec(Mp4Dump.path, args).then((data) => {
     if(args.some(a => a && a.toLowerCase())) {
       return JSON.parse(data)
     }

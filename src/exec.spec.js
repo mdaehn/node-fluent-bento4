@@ -3,7 +3,7 @@ const { mp4dump } = require('bento4-installer')
 const exec = require('./exec')
 const equal = require('assert').deepEqual
 
-describe.only('exec()', function () {
+describe('exec()', function () {
   describe('passed mp4dump command with input video and json format options', function () {
     it('should exec and return text with ftyp in it', async () => {
       const data = await exec(mp4dump,  ['--format', 'text', `${path.resolve(__dirname, '..')}/test/videos/myloves.mp4`])
