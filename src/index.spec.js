@@ -2,7 +2,7 @@ const bento4 = require('./index')
 const bento4Commands = require('bento4-installer')
 const equal = require('assert').deepEqual
 
-describe.only('bento4', function () {
+describe('bento4', function () {
   describe('setBinPath()', () => {
     it('should set the bento4 command paths to match bento4-installer\'s command', () => {
       bento4.setBinPath(bento4Commands.binPath)

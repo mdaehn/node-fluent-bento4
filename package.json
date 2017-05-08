@@ -24,7 +24,8 @@
   "dependencies": {
     "bento4-installer": "^1.0.7",
     "cross-spawn": "^5.1.0",
-    "rambda": "^0.5.6"
+    "rambda": "^0.5.6",
+    "ramda": "^0.23.0"
   },
   "devDependencies": {
     "mocha": "^3.3.0"
