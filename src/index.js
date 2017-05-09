@@ -2,6 +2,7 @@ const os = require('os')
 const exeExt = os.platform() === 'win32' ? '.exe' : ''
 const batExt = os.platform() === 'win32' ? '.bat' : ''
 const path = require('path')
+const Mp4DumpCommand = require('./mp4dump')
 
 const bento4 = create()
 bento4.setBinPath = setBinPath
@@ -26,7 +27,7 @@ function create(binPath = (process.env.BENTO4_BIN || '')) {
     mp4dashclone: { path: path.join(binPath, `mp4dashclone${batExt}`) },
     mp4dcfpackager: { path: path.join(binPath, `mp4dcfpackager${exeExt}`) },
     mp4decrypt: { path: path.join(binPath, `mp4decrypt${exeExt}`) },
-    mp4dump: { path: path.join(binPath, `mp4dump${exeExt}`) },
+    mp4dump: Mp4DumpCommand(os, process, {bin:binPath}),
     mp4edit: { path: path.join(binPath, `mp4edit${exeExt}`) },
     mp4encrypt: { path: path.join(binPath, `mp4encrypt${exeExt}`) },
     mp4extract: { path: path.join(binPath, `mp4extract${exeExt}`) },
