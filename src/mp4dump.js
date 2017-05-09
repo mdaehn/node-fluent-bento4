@@ -1,6 +1,6 @@
 const exec = require('./exec')
 const path = require('path')
-const { createInstance } = require('./util')
+const createInstance = require('./create-instance')
 
 module.exports = Mp4DumpCommand
 

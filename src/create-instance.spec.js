@@ -1,5 +1,5 @@
 const equal = require('assert').deepEqual
-const { createInstance } = require('./util')
+const createInstance = require('./create-instance')
 
 
 describe('util', () => {

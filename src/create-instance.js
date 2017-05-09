@@ -1,6 +1,4 @@
-module.exports = {
-  createInstance
-}
+module.exports = createInstance
 
 /**
  * Ensures the self is an instance of the Mp4DumpCommand object. If not,
