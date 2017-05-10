@@ -1,12 +1,11 @@
 {
   "name": "fluent-bento4",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A fluent API for bento4",
   "main": "./src/index.js",
   "scripts": {
     "test": "mocha ./src/**/*.spec.js",
     "lint": "esw .eslintrc.js src/ lib/ tests/ -w --fix --ignore-pattern !.eslintrc.js"
-
   },
   "repository": {
     "type": "git",
