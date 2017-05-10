@@ -25,8 +25,8 @@ function Mp4DumpCommand(os, process, { bin } = {}) {
    *
    * @returns {Mp4DumpCommand} - The Mp4DumpCommand constructor function
    **/
-  self.setBinPath = function (binPath = DEFAULT_BIN) {
-    return Mp4DumpCommand(os, process, { bin:binPath })
+  self.setBinPath = function(binPath = DEFAULT_BIN) {
+    return Mp4DumpCommand(os, process, { bin: binPath })
   }
 
   /**
@@ -35,10 +35,10 @@ function Mp4DumpCommand(os, process, { bin } = {}) {
    *
    * @returns {Promise} - resolves with stdout on success and stderr on failure
    **/
-  self.exec = function (input, args = []) {
+  self.exec = function(input, args = []) {
     args.push(input)
-    return exec(self.path, args).then((data) => {
-      if(args.some(a => a && a.toLowerCase() === 'json')) {
+    return exec(self.path, args).then(data => {
+      if (args.some(a => a && a.toLowerCase() === 'json')) {
         return JSON.parse(data)
       }
 

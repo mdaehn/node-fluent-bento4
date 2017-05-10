@@ -8,7 +8,7 @@ module.exports = createInstance
  * @returns {Type} - the instance of Type
  **/
 function createInstance(self, Type, args) {
-  if(!(self instanceof Type)) {
+  if (!(self instanceof Type)) {
     const obj = Object.create(Type.prototype)
     return Type.apply(obj, args)
   }

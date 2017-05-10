@@ -2,17 +2,16 @@ const bento4 = require('./index')
 const bento4Commands = require('bento4-installer')
 const equal = require('assert').deepEqual
 
-describe('bento4', function () {
+describe('bento4', function() {
   describe('setBinPath()', () => {
-    it('should set the bento4 command paths to match bento4-installer\'s command', () => {
+    it("should set the bento4 command paths to match bento4-installer's command", () => {
       bento4.setBinPath(bento4Commands.binPath)
-      bento4CommandNames.forEach((cmd) => {
+      bento4CommandNames.forEach(cmd => {
         equal(bento4[cmd].path, bento4Commands[cmd])
       })
     })
   })
 })
-
 
 const bento4CommandNames = [
   'aac2mp4',

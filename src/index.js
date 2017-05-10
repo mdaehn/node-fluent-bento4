@@ -13,7 +13,7 @@ function setBinPath(binPath) {
   return Object.assign(bento4, create(binPath))
 }
 
-function create(binPath = (process.env.BENTO4_BIN || '')) {
+function create(binPath = process.env.BENTO4_BIN || '') {
   return {
     binPath,
     aac2mp4: { path: path.join(binPath, `aac2mp4${exeExt}`) },
@@ -27,7 +27,7 @@ function create(binPath = (process.env.BENTO4_BIN || '')) {
     mp4dashclone: { path: path.join(binPath, `mp4dashclone${batExt}`) },
     mp4dcfpackager: { path: path.join(binPath, `mp4dcfpackager${exeExt}`) },
     mp4decrypt: { path: path.join(binPath, `mp4decrypt${exeExt}`) },
-    mp4dump: Mp4DumpCommand(os, process, {bin:binPath}),
+    mp4dump: Mp4DumpCommand(os, process, { bin: binPath }),
     mp4edit: { path: path.join(binPath, `mp4edit${exeExt}`) },
     mp4encrypt: { path: path.join(binPath, `mp4encrypt${exeExt}`) },
     mp4extract: { path: path.join(binPath, `mp4extract${exeExt}`) },
