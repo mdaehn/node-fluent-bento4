@@ -1,6 +1,6 @@
-const exec = require('./exec')
+const exec = require('../exec')
 const path = require('path')
-const createInstance = require('./create-instance')
+const createInstance = require('../create-instance')
 
 module.exports = Mp4DumpCommand
 
@@ -21,7 +21,7 @@ function Mp4DumpCommand(os, process, { bin } = {}) {
 
   /**
    * Set the bin folder of the executable command
-   * @param {string} [binPath=''] - the path to the bin folder
+   * @param {string} [binPath=DEFAULT_BIN] - the path to the bin folder. defaults the env variable DEFAULT_BIN or ''
    *
    * @returns {Mp4DumpCommand} - The Mp4DumpCommand constructor function
    **/

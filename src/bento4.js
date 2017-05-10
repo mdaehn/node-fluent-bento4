@@ -1,12 +1,12 @@
 const path = require('path')
 const createInstance = require('./create-instance')
-const Mp4DumpCommand = require('./mp4dump')
+const { Mp4DumpCommand } = require('./commands')
 
 module.exports = Bento4
 
 /**
  * @constructor
- * The Mp4DumpCommand Constructor
+ * The Bento4 Constructor
  *
  **/
 function Bento4(os, process, { bin } = {}) {
@@ -17,9 +17,16 @@ function Bento4(os, process, { bin } = {}) {
 
   const self = createInstance(this, Bento4, arguments)
 
+  /**
+   * Set the bin folder of the executable command
+   * @param {string} [binPath=DEFAULT_BIN] - the path to the bin folder. defaults the env variable DEFAULT_BIN or ''
+   *
+   * @returns {Bento4} - The Bento4 constructor function
+   **/
   self.setBinPath = function(binPath = DEFAULT_BIN) {
     return Bento4(os, process, { bin: binPath })
   }
+
   self.bin = bin || DEFAULT_BIN
   //=========================================================
   // COMMANDS

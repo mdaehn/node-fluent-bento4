@@ -5,7 +5,7 @@ const Mp4DumpCommand = require('./mp4dump')
 const equal = require('assert').deepEqual
 
 describe('Mp4DumpCommand', () => {
-  const inputVideo = `${path.resolve(__dirname, '..')}/test/videos/myloves.mp4`
+  const inputVideo = `${path.resolve(__dirname, '../..')}/test/videos/myloves.mp4`
 
   describe('constructor()', () => {
     describe('when new operator is NOT used', () => {
