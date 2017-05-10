@@ -10,7 +10,7 @@ module.exports = Mp4DumpCommand
  *
  **/
 function Mp4DumpCommand(os, process, { bin } = {}) {
-  /** @constant {string} - the executable command file name */
+  /** @constant {string} - the bin folders of the executables */
   const DEFAULT_BIN = process.env.BENTO4_BIN || ''
 
   const self = createInstance(this, Mp4DumpCommand, arguments)

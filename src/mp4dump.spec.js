@@ -6,30 +6,6 @@ const equal = require('assert').deepEqual
 
 describe('Mp4DumpCommand', () => {
   const inputVideo = `${path.resolve(__dirname, '..')}/test/videos/myloves.mp4`
-  describe('setBinPath()', () => {
-    describe('when called with the bento4-installer binPath', () => {
-      const mp4dumpCommand = Mp4DumpCommand(os, process).setBinPath(binPath)
-      it(`should set the command path ${mp4dump}`, () => {
-        equal(mp4dumpCommand.path, mp4dump)
-      })
-      it(`should set the bin path to ${binPath}`, () => {
-        equal(mp4dumpCommand.bin, binPath)
-      })
-    })
-    describe('when called with no parameters and process.env.BENTO4_BIN is NOT set', () => {
-      const BENTO4_BIN = '/bento/fake/bin'
-      const mp4dumpCommand = Mp4DumpCommand(os, {
-        env: { BENTO4_BIN }
-      }).setBinPath()
-      const expectedPath = path.join(BENTO4_BIN, mp4dumpCommand.filename)
-      it(`should set the command path ${mp4dump}`, () => {
-        equal(mp4dumpCommand.path, expectedPath)
-      })
-      it(`should set the bin path to empty string`, () => {
-        equal(mp4dumpCommand.bin, BENTO4_BIN)
-      })
-    })
-  })
 
   describe('constructor()', () => {
     describe('when new operator is NOT used', () => {
@@ -65,6 +41,31 @@ describe('Mp4DumpCommand', () => {
       const expectedFilename = 'mp4dump'
       it(`should create an instance with the filename property set to ${expectedFilename}`, () => {
         equal(mp4dumpCommand.filename, expectedFilename)
+      })
+    })
+  })
+
+  describe('setBinPath()', () => {
+    describe('when called with the bento4-installer binPath', () => {
+      const mp4dumpCommand = Mp4DumpCommand(os, process).setBinPath(binPath)
+      it(`should set the command path ${mp4dump}`, () => {
+        equal(mp4dumpCommand.path, mp4dump)
+      })
+      it(`should set the bin path to ${binPath}`, () => {
+        equal(mp4dumpCommand.bin, binPath)
+      })
+    })
+    describe('when called with no parameters and process.env.BENTO4_BIN is NOT set', () => {
+      const BENTO4_BIN = '/bento/fake/bin'
+      const mp4dumpCommand = Mp4DumpCommand(os, {
+        env: { BENTO4_BIN }
+      }).setBinPath()
+      const expectedPath = path.join(BENTO4_BIN, mp4dumpCommand.filename)
+      it(`should set the command path ${mp4dump}`, () => {
+        equal(mp4dumpCommand.path, expectedPath)
+      })
+      it(`should set the bin path to empty string`, () => {
+        equal(mp4dumpCommand.bin, BENTO4_BIN)
       })
     })
   })
