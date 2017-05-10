@@ -1,6 +1,6 @@
 {
   "name": "fluent-bento4",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A fluent API for bento4",
   "main": "./src/index.js",
   "scripts": {
