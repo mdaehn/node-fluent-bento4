@@ -1,12 +1,20 @@
-const bento4 = require('./index')
-//const bento4Commands = require('bento4-installer')
+const bento4Commands = require('bento4-installer')
 const equal = require('assert').deepEqual
 
-describe('bento4', function() {
-  describe('when bento4 uses the default bin path', () => {
+describe('bento4', () => {
+  describe('when using the default bento4 option', () => {
+    const bento4 = require('./index')
     it('should set the bento4 command paths to the default', () => {
       Object.keys(bento4CommandNames).forEach(cmd => {
         equal(bento4[cmd].path, bento4CommandNames[cmd])
+      })
+    })
+  })
+  describe('when using the bin path of the bento4 installer', () => {
+    const bento4 = require('./index')({ bin: bento4Commands.binPath })
+    it('should set the bento4 command paths to the bento installers', () => {
+      Object.keys(bento4CommandNames).forEach(cmd => {
+        equal(bento4[cmd].path, bento4Commands[cmd])
       })
     })
   })
