@@ -1,50 +1,22 @@
-const exec = require('../exec')
-const path = require('path')
-const createInstance = require('../create-instance')
+const Command = require('./command')
 
-module.exports = Mp4DumpCommand
+module.exports = Mp4Dump
 
 /**
  * @constructor
- * The Mp4DumpCommand Constructor
+ * The Mp4Dump Constructor
  *
  **/
-function Mp4DumpCommand(os, process, { bin } = {}) {
-  /** @constant {string} - the bin folders of the executables */
-  const DEFAULT_BIN = process.env.BENTO4_BIN || ''
+function Mp4Dump(os, process, options = {}) {
+  const instance = this
 
-  const self = createInstance(this, Mp4DumpCommand, arguments)
-
-  self.filename = `mp4dump${os.platform() === 'win32' ? '.exe' : ''}`
-  self.bin = bin || DEFAULT_BIN
-  self.path = path.join(self.bin, self.filename)
-
-  /**
-   * Set the bin folder of the executable command
-   * @param {string} [binPath=DEFAULT_BIN] - the path to the bin folder. defaults the env variable DEFAULT_BIN or ''
-   *
-   * @returns {Mp4DumpCommand} - The Mp4DumpCommand constructor function
-   **/
-  self.setBinPath = function(binPath = DEFAULT_BIN) {
-    return Mp4DumpCommand(os, process, { bin: binPath })
+  if (!(instance instanceof Mp4Dump)) {
+    const obj = Object.create(Mp4Dump.prototype)
+    return Mp4Dump.apply(obj, arguments)
   }
 
-  /**
-   * @param {string} input - path to input video
-   * @param {Array} [args=[]] - Array of bento4 mp4dump command arguments
-   *
-   * @returns {Promise} - resolves with stdout on success and stderr on failure
-   **/
-  self.exec = function(input, args = []) {
-    args.push(input)
-    return exec(self.path, args).then(data => {
-      if (args.some(a => a && a.toLowerCase() === 'json')) {
-        return JSON.parse(data)
-      }
+  Object.assign(options, { win32ext: 'exe' })
+  Object.assign(instance, Command(os, process, Mp4Dump, options))
 
-      return data
-    })
-  }
-
-  return Object.freeze(self)
+  return Object.freeze(instance)
 }

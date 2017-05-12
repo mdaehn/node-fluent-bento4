@@ -27,6 +27,7 @@ function Bento4(os, process, { bin } = {}) {
     return Bento4(os, process, { bin: binPath })
   }
 
+  /** @member {string} - the path to the bin folder containing the executables */
   self.bin = bin || DEFAULT_BIN
   //=========================================================
   // COMMANDS
