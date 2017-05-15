@@ -22,7 +22,7 @@ module.exports = {
         singleQuote: true,
         semi: false,
         useTabs: false,
-        printWidth: 100,
+        printWidth: 130,
         tabWidth: 2
       }
     ],

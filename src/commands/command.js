@@ -12,6 +12,7 @@ function Command(os, process, CmdType, { bin, win32ext = 'exe' } = {}) {
   /** @constant {string} - the bin folders of the executables */
   const DEFAULT_BIN = process.env.BENTO4_BIN || ''
   const instance = this
+  CmdType = Command._ensureTypeIsNamedFunction(CmdType)
 
   if (!(instance instanceof Command)) {
     const obj = Object.create(Command.prototype)
@@ -54,4 +55,16 @@ function Command(os, process, CmdType, { bin, win32ext = 'exe' } = {}) {
   }
 
   return Object.freeze(instance)
+}
+
+Command._ensureTypeIsNamedFunction = CmdType => {
+  if (typeof CmdType === 'string') {
+    return (os, process, options) => {
+      const GenericCommand = new Function('os', 'process', 'options={}', `return function ${CmdType} () { }`)()
+
+      return new Command(os, process, GenericCommand, options)
+    }
+  }
+
+  return CmdType
 }

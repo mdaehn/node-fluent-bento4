@@ -1,3 +1,4 @@
 module.exports = {
-  Mp4DumpCommand: require('./mp4dump')
+  Command: require('./command'),
+  Mp4Dump: require('./mp4dump')
 }

@@ -98,4 +98,28 @@ describe('Command', () => {
       })
     })
   })
+
+  describe('Command._ensureTypeIsNamedFunction()', () => {
+    describe('when called with a CmdType that is a string', () => {
+      const CmdType = 'mp4dump'
+      const Cmd = Command._ensureTypeIsNamedFunction(CmdType)
+      const cmd = Cmd(os, process, { bin: binPath })
+
+      it('should return a function', () => {
+        equal(typeof Cmd === 'function', true)
+      })
+
+      describe('And when the function returned is called with the os, proces, and options', () => {
+        it(`should return a command with the filename set to ${CmdType}`, () => {
+          equal(cmd.filename === CmdType, true)
+        })
+        it('should return a command with the path set to the correct value', () => {
+          equal(cmd.path === path.join(binPath, cmd.filename), true)
+        })
+        it('should return a command with a exec function', () => {
+          equal(typeof cmd.exec === 'function', true)
+        })
+      })
+    })
+  })
 })

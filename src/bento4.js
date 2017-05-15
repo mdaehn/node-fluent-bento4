@@ -1,6 +1,4 @@
-const path = require('path')
-const createInstance = require('./create-instance')
-const { Mp4DumpCommand } = require('./commands')
+const { Command } = require('./commands')
 
 module.exports = Bento4
 
@@ -10,50 +8,52 @@ module.exports = Bento4
  *
  **/
 function Bento4(os, process, { bin } = {}) {
-  const EXE_EXT = os.platform() === 'win32' ? '.exe' : ''
-  const BAT_EXT = os.platform() === 'win32' ? '.bat' : ''
   /** @constant {string} - the bin folder of the executables */
   const DEFAULT_BIN = process.env.BENTO4_BIN || ''
 
-  const self = createInstance(this, Bento4, arguments)
+  const instance = this
 
+  if (!(instance instanceof Bento4)) {
+    const obj = Object.create(Bento4.prototype)
+    return Bento4.apply(obj, arguments)
+  }
   /**
    * Set the bin folder of the executable command
    * @param {string} [binPath=DEFAULT_BIN] - the path to the bin folder. defaults the env variable DEFAULT_BIN or ''
    *
    * @returns {Bento4} - The Bento4 constructor function
    **/
-  self.setBinPath = function(binPath = DEFAULT_BIN) {
+  instance.setBinPath = function(binPath = DEFAULT_BIN) {
     return Bento4(os, process, { bin: binPath })
   }
 
   /** @member {string} - the path to the bin folder containing the executables */
-  self.bin = bin || DEFAULT_BIN
+  instance.bin = bin || DEFAULT_BIN
   //=========================================================
   // COMMANDS
   //=========================================================
-  self.aac2mp4 = { path: path.join(self.bin, `aac2mp4${EXE_EXT}`) }
-  self.mp42aac = { path: path.join(self.bin, `mp42aac${EXE_EXT}`) }
-  self.mp42avc = { path: path.join(self.bin, `mp42avc${EXE_EXT}`) }
-  self.mp42hevc = { path: path.join(self.bin, `mp42hevc${EXE_EXT}`) }
-  self.mp42hls = { path: path.join(self.bin, `mp42hls${EXE_EXT}`) }
-  self.mp42ts = { path: path.join(self.bin, `mp42ts${EXE_EXT}`) }
-  self.mp4compact = { path: path.join(self.bin, `mp4compact${EXE_EXT}`) }
-  self.mp4dash = { path: path.join(self.bin, `mp4dash${BAT_EXT}`) }
-  self.mp4dashclone = { path: path.join(self.bin, `mp4dashclone${BAT_EXT}`) }
-  self.mp4dcfpackager = { path: path.join(self.bin, `mp4dcfpackager${EXE_EXT}`) }
-  self.mp4decrypt = { path: path.join(self.bin, `mp4decrypt${EXE_EXT}`) }
-  self.mp4dump = Mp4DumpCommand(os, process, { bin: self.bin })
-  self.mp4edit = { path: path.join(self.bin, `mp4edit${EXE_EXT}`) }
-  self.mp4encrypt = { path: path.join(self.bin, `mp4encrypt${EXE_EXT}`) }
-  self.mp4extract = { path: path.join(self.bin, `mp4extract${EXE_EXT}`) }
-  self.mp4fragment = { path: path.join(self.bin, `mp4fragment${EXE_EXT}`) }
-  self.mp4hls = { path: path.join(self.bin, `mp4hls${BAT_EXT}`) }
-  self.mp4info = { path: path.join(self.bin, `mp4info${EXE_EXT}`) }
-  self.mp4mux = { path: path.join(self.bin, `mp4mux${EXE_EXT}`) }
-  self.mp4rtphintinfo = { path: path.join(self.bin, `mp4rtphintinfo${EXE_EXT}`) }
-  self.mp4split = { path: path.join(self.bin, `mp4split${EXE_EXT}`) }
-  self.mp4tag = { path: path.join(self.bin, `mp4tag${EXE_EXT}`) }
+  instance.aac2mp4 = Command(os, process, 'aac2mp4', { bin: instance.bin })
+  instance.mp42aac = Command(os, process, 'mp42aac', { bin: instance.bin })
+  instance.mp42avc = Command(os, process, 'mp42avc', { bin: instance.bin })
+  instance.mp42hevc = Command(os, process, 'mp42hevc', { bin: instance.bin })
+  instance.mp42hls = Command(os, process, 'mp42hls', { bin: instance.bin })
+  instance.mp42ts = Command(os, process, 'mp42ts', { bin: instance.bin })
+  instance.mp4compact = Command(os, process, 'mp4compact', { bin: instance.bin })
+  instance.mp4dash = Command(os, process, 'mp4dash', { bin: instance.bin, win32ext: 'bat' })
+  instance.mp4dashclone = Command(os, process, 'mp4dashclone', { bin: instance.bin, win32ext: 'bat' })
+  instance.mp4dcfpackager = Command(os, process, 'mp4dcfpackager', { bin: instance.bin })
+  instance.mp4decrypt = Command(os, process, 'mp4decrypt', { bin: instance.bin })
+  instance.mp4dump = Command(os, process, 'mp4dump', { bin: instance.bin })
+  instance.mp4edit = Command(os, process, 'mp4edit', { bin: instance.bin })
+  instance.mp4encrypt = Command(os, process, 'mp4encrypt', { bin: instance.bin })
+  instance.mp4extract = Command(os, process, 'mp4extract', { bin: instance.bin })
+  instance.mp4fragment = Command(os, process, 'mp4fragment', { bin: instance.bin })
+  instance.mp4hls = Command(os, process, 'mp4hls', { bin: instance.bin, win32ext: 'bat' })
+  instance.mp4info = Command(os, process, 'mp4info', { bin: instance.bin })
+  instance.mp4mux = Command(os, process, 'mp4mux', { bin: instance.bin })
+  instance.mp4rtphintinfo = Command(os, process, 'mp4rtphintinfo', { bin: instance.bin })
+  instance.mp4split = Command(os, process, 'mp4split', { bin: instance.bin })
+  instance.mp4tag = Command(os, process, 'mp4tag', { bin: instance.bin })
 
-  return self
+  return instance
 }
