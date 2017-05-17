@@ -29,7 +29,7 @@ The thing to note here is that the `setBinPath` method returns a new Bento4 obje
 ##Executing Commands
 Every command has an `exec(input, args=[])` method.
 
-The `input` parameter can be a string or an array of strings that represent the file path of input video (e.g `/videos/myvid.mp4` or `['/videos/myvid1.mp4', '/videos/myvid2.mp4']`). 
+The `input` parameter can be a string or an array of strings that represent the file path of input video (e.g `/videos/myvid.mp4` or `['/videos/myvid1.mp4', '/videos/myvid2.mp4']`).
 
 The `args` parameter is an array of command options for the specific command. For example, the `mp4dump` commands args parameter may look like this `['--format', 'json']`.
 
@@ -39,6 +39,6 @@ const bento4 = require('bento4')({bin:binPath})
 const inputVideo = path.join(__dirname, '/videos/vid.mp4')
 const args = ['--format', 'json']
 
-const bento4.mp4dump.exec(inputVideo, args)
+const jsonDump = bento4.mp4dump.exec(inputVideo, args)
 
 ```
