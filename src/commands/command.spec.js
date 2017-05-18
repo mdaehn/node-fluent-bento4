@@ -102,14 +102,15 @@ describe('Command', () => {
   describe('Command._ensureTypeIsNamedFunction()', () => {
     describe('when called with a CmdType that is a string', () => {
       const CmdType = 'mp4dump'
-      const Cmd = Command._ensureTypeIsNamedFunction(CmdType)
+      const Cmd = Command._ensureTypeIsNamedFunction(os, process, CmdType, { bin: binPath })
       const cmd = Cmd(os, process, { bin: binPath })
 
-      it('should return a function', () => {
-        equal(typeof Cmd === 'function', true)
+      it('should return a function with name set to mp4dump', () => {
+        equal(typeof Cmd, 'function', true)
+        equal(Cmd.name, 'mp4dump')
       })
 
-      describe('And when the function returned is called with the os, proces, and options', () => {
+      describe('And when the function returned is called with the os, process, and options', () => {
         it(`should return a command with the filename set to ${CmdType}`, () => {
           equal(cmd.filename === CmdType, true)
         })
