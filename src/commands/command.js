@@ -41,7 +41,7 @@ function Command(os, process, CmdType, { bin, win32ext = 'exe' } = {}) {
    **/
   instance.exec = function(input, args = []) {
     if (Array.isArray(input)) {
-      input.foreEach(i => args.push(i))
+      input.forEach(i => args.push(i))
     } else {
       args.push(input)
     }
